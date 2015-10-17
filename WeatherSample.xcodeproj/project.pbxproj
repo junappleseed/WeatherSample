@@ -14,6 +14,7 @@
 		BF58849A1BCFFEC60067B04F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5884981BCFFEC60067B04F /* LaunchScreen.storyboard */; };
 		BF5884A51BCFFEC70067B04F /* WeatherSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5884A41BCFFEC70067B04F /* WeatherSampleTests.swift */; };
 		BF5884B01BCFFEC70067B04F /* WeatherSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5884AF1BCFFEC70067B04F /* WeatherSampleUITests.swift */; };
+		BF9A60EA1BD26F3A0058C583 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A60E91BD26F3A0058C583 /* Area.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		BF5884AB1BCFFEC70067B04F /* WeatherSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF5884AF1BCFFEC70067B04F /* WeatherSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSampleUITests.swift; sourceTree = "<group>"; };
 		BF5884B11BCFFEC70067B04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF9A60E91BD26F3A0058C583 /* Area.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Area.swift; path = ../../Weather0/Weather/Area.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		BF58848E1BCFFEC60067B04F /* WeatherSample */ = {
 			isa = PBXGroup;
 			children = (
+				BF9A60E91BD26F3A0058C583 /* Area.swift */,
 				BF58848F1BCFFEC60067B04F /* AppDelegate.swift */,
 				BF5884911BCFFEC60067B04F /* ViewController.swift */,
 				BF5884931BCFFEC60067B04F /* Main.storyboard */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF5884921BCFFEC60067B04F /* ViewController.swift in Sources */,
+				BF9A60EA1BD26F3A0058C583 /* Area.swift in Sources */,
 				BF5884901BCFFEC60067B04F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +490,7 @@
 				BF5884B61BCFFEC70067B04F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF5884B71BCFFEC70067B04F /* Build configuration list for PBXNativeTarget "WeatherSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				BF5884B91BCFFEC70067B04F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF5884BA1BCFFEC70067B04F /* Build configuration list for PBXNativeTarget "WeatherSampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +508,7 @@
 				BF5884BC1BCFFEC70067B04F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
