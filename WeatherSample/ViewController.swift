@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
-        cell.textLabel!.text = Area.items[indexPath.row].name
+        cell.textLabel!.text = Area.items[indexPath.row].areaName
         return cell
     }
 }

@@ -10,25 +10,25 @@ import Foundation
 
 class Area {
     static let items: [Area] = [
-        Area(id: "1", name: "北海道", city: "016010"), // 札幌
-        Area(id: "2", name: "東北", city: "040010"), // 仙台
-        Area(id: "3", name: "関東", city: "130010"), // 東京
-        Area(id: "4", name: "北信越", city: "150010"), // 新潟
-        Area(id: "5", name: "東海", city: "230010"), // 名古屋
-        Area(id: "6", name: "近畿", city: "270000"), // 大阪
-        Area(id: "7", name: "中国", city: "340010"), // 広島
-        Area(id: "8", name: "四国", city: "380010"), // 松山
-        Area(id: "9", name: "九州", city: "400010"), // 福岡
-        Area(id: "10", name: "沖縄", city: "471010") // 那覇
+        Area(areaName: "北海道", cityId: "016010"), // 札幌
+        Area(areaName: "東北", cityId: "040010"), // 仙台
+        Area(areaName: "関東", cityId: "130010"), // 東京
+        Area(areaName: "北信越", cityId: "150010"), // 新潟
+        Area(areaName: "東海", cityId: "230010"), // 名古屋
+        Area(areaName: "近畿", cityId: "270000"), // 大阪
+        Area(areaName: "中国", cityId: "340010"), // 広島
+        Area(areaName: "四国", cityId: "380010"), // 松山
+        Area(areaName: "九州", cityId: "400010"), // 福岡
+        Area(areaName: "沖縄", cityId: "471010") // 那覇
     ]
     
-    let id: String!
-    let name: String!
-    let city: String!
+    /* 画面表示用の地域名 */
+    private let areaName: String!
+    /* 1次細分区のID */
+    private let cityId: String!
     
-    private init(id: String, name: String, city: String) {
-        self.id = id
-        self.name = name
-        self.city = city
+    private init(areaName: String, cityId: String) {
+        self.areaName = areaName
+        self.cityId = cityId
     }
 }
