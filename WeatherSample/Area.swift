@@ -23,9 +23,9 @@ class Area {
     ]
     
     /* 画面表示用の地域名 */
-    private let areaName: String!
+    let areaName: String!
     /* 1次細分区のID */
-    private let cityId: String!
+    let cityId: String!
     
     private init(areaName: String, cityId: String) {
         self.areaName = areaName
