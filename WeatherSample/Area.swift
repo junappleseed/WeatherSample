@@ -22,7 +22,7 @@ class Area {
         Area(areaName: "沖縄", cityId: "471010") // 那覇
     ]
     
-    /* 画面表示用の地域名 */
+    /* 画面表示用の地方名 */
     let areaName: String!
     /* 1次細分区のID */
     let cityId: String!
