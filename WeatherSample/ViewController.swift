@@ -25,6 +25,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - UITableViewDataSource
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Area.items.count
     }
@@ -33,6 +35,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell: UITableViewCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
         cell.textLabel!.text = Area.items[indexPath.row].areaName
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("toMainViewController", sender: nil)
+    }
+    
+    // MARK: - Segue
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toMainViewController" {
+            if let indexPath = areaTableView.indexPathForSelectedRow {
+                let controller = segue.destinationViewController as! MainViewController
+                controller.selectedArea = Area.items[indexPath.row]
+            }
+        }
     }
 }
 

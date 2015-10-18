@@ -10,16 +10,16 @@ import Foundation
 
 class Area {
     static let items: [Area] = [
-        Area(areaName: "北海道", cityId: "016010"), // 札幌
-        Area(areaName: "東北", cityId: "040010"), // 仙台
-        Area(areaName: "関東", cityId: "130010"), // 東京
-        Area(areaName: "北信越", cityId: "150010"), // 新潟
-        Area(areaName: "東海", cityId: "230010"), // 名古屋
-        Area(areaName: "近畿", cityId: "270000"), // 大阪
-        Area(areaName: "中国", cityId: "340010"), // 広島
-        Area(areaName: "四国", cityId: "380010"), // 松山
-        Area(areaName: "九州", cityId: "400010"), // 福岡
-        Area(areaName: "沖縄", cityId: "471010") // 那覇
+        Area(areaName: "北海道地方", cityId: "016010"), // 札幌
+        Area(areaName: "東北地方", cityId: "040010"), // 仙台
+        Area(areaName: "関東地方", cityId: "130010"), // 東京
+        Area(areaName: "北信越地方", cityId: "150010"), // 新潟
+        Area(areaName: "東海地方", cityId: "230010"), // 名古屋
+        Area(areaName: "近畿地方", cityId: "270000"), // 大阪
+        Area(areaName: "中国地方", cityId: "340010"), // 広島
+        Area(areaName: "四国地方", cityId: "380010"), // 松山
+        Area(areaName: "九州地方", cityId: "400010"), // 福岡
+        Area(areaName: "沖縄地方", cityId: "471010") // 那覇
     ]
     
     /* 画面表示用の地方名 */

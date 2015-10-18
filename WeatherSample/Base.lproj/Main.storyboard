@@ -26,11 +26,46 @@
                     <navigationItem key="navigationItem" title="地方選択" id="9xS-g3-fqJ"/>
                     <connections>
                         <outlet property="areaTableView" destination="bKQ-dI-YMe" id="P5K-jm-yBF"/>
+                        <segue destination="zU4-q8-F4w" kind="show" identifier="toMainViewController" id="Vq9-EF-c5r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1218" y="94"/>
+            <point key="canvasLocation" x="1194" y="94"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="lIX-XT-P59">
+            <objects>
+                <viewController id="zU4-q8-F4w" customClass="MainViewController" customModule="WeatherSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6cx-MZ-wLc"/>
+                        <viewControllerLayoutGuide type="bottom" id="KuI-hG-gfK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ktV-bs-e8n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcm-Dw-MJQ">
+                                <rect key="frame" x="276" y="288" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gcm-Dw-MJQ" firstAttribute="centerX" secondItem="ktV-bs-e8n" secondAttribute="centerX" id="9FI-Qf-iyS"/>
+                            <constraint firstItem="gcm-Dw-MJQ" firstAttribute="centerY" secondItem="ktV-bs-e8n" secondAttribute="centerY" id="Oxn-8r-orG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="0vr-20-h1S"/>
+                    <connections>
+                        <outlet property="areaLabel" destination="gcm-Dw-MJQ" id="mzs-y5-WJy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fx9-XK-nLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1987" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Ap-s9-ei2">
@@ -51,5 +86,5 @@
             <point key="canvasLocation" x="406" y="94"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

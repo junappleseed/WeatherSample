@@ -15,6 +15,7 @@
 		BF58849A1BCFFEC60067B04F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5884981BCFFEC60067B04F /* LaunchScreen.storyboard */; };
 		BF5884A51BCFFEC70067B04F /* WeatherSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5884A41BCFFEC70067B04F /* WeatherSampleTests.swift */; };
 		BF5884B01BCFFEC70067B04F /* WeatherSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5884AF1BCFFEC70067B04F /* WeatherSampleUITests.swift */; };
+		BFC63EAF1BD38B580064178D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC63EAE1BD38B580064178D /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BF5884AB1BCFFEC70067B04F /* WeatherSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF5884AF1BCFFEC70067B04F /* WeatherSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSampleUITests.swift; sourceTree = "<group>"; };
 		BF5884B11BCFFEC70067B04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC63EAE1BD38B580064178D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				BF5884981BCFFEC60067B04F /* LaunchScreen.storyboard */,
 				BF58849B1BCFFEC60067B04F /* Info.plist */,
 				BF565DBF1BD29746005A890E /* Area.swift */,
+				BFC63EAE1BD38B580064178D /* MainViewController.swift */,
 			);
 			path = WeatherSample;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				BF5884921BCFFEC60067B04F /* ViewController.swift in Sources */,
 				BF565DC01BD29746005A890E /* Area.swift in Sources */,
 				BF5884901BCFFEC60067B04F /* AppDelegate.swift in Sources */,
+				BFC63EAF1BD38B580064178D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
