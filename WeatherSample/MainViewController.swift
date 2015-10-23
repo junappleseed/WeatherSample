@@ -12,16 +12,17 @@ class MainViewController: UIViewController {
     
     var selectedArea: Area!
     
-    @IBOutlet weak var areaLabel: UILabel!
+    @IBOutlet weak var dateLabelToday: UILabel!
+    @IBOutlet weak var weatherImageToday: UIImageView!
+    @IBOutlet weak var weatherLabelToday: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.title = selectedArea.areaName + "の天気"
-        areaLabel.text = selectedArea.areaName
         
-        showWeatherData(selectedArea.cityId)
+        showWeatherData(selectedArea.cityId, day: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,7 +30,7 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func showWeatherData(cityId: String) {
+    private func showWeatherData(cityId: String, day: Int) {
 
         let url = NSURL(string: "http://weather.livedoor.com/forecast/webservice/json/v1?city=" + cityId)
         let request = NSURLRequest(URL: url!)
@@ -43,26 +44,71 @@ class MainViewController: UIViewController {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 
-                print(json["title"])
-                
-                if let location: NSDictionary = NSDictionary(dictionary: json["location"] as! NSDictionary) {
-                    print(location["area"])
-                    print(location["prefecture"])
-                    print(location["city"])
-                }
+//                print(json["title"])
+//                
+//                if let location: NSDictionary = NSDictionary(dictionary: json["location"] as! NSDictionary) {
+//                    print(location["area"])
+//                    print(location["prefecture"])
+//                    print(location["city"])
+//                }
                 
                 if let forecasts: NSArray = NSArray(array: json["forecasts"] as! NSArray) {
-                    if let today: NSDictionary = NSDictionary(dictionary: forecasts[0] as! NSDictionary) {
-                        print(today["dateLabel"])
-                        print(today["telop"])
-                        print(today["date"])
+                    if let today: NSDictionary = NSDictionary(dictionary: forecasts[day] as! NSDictionary) {
+//                        print(today["dateLabel"])
+//                        print(today["telop"])
+//                        print(today["date"])
+                        
+                        let dateLabel: String = today["dateLabel"] as! String
+                        let dateString: String = today["date"] as! String
+                        self.dateLabelToday.text = self.formatDate(dateLabel, dateString: dateString, dateFormat: "yyyy-MM-dd")
+                        self.weatherLabelToday.text = today["telop"] as? String
+                        
+                        if let image: NSDictionary = NSDictionary(dictionary: today["image"] as! NSDictionary) {
+                            let url: NSURL = NSURL(string: image["url"] as! String)!
+                            let imageData: NSData = NSData(contentsOfURL: url)!
+                            self.weatherImageToday.image = UIImage(data: imageData)
+                        }
+                        
+                        if let temperature: NSDictionary = NSDictionary(dictionary: today["temperature"] as! NSDictionary) {
+                            if !temperature["min"]!.isKindOfClass(NSNull) {
+                                if let min: NSDictionary = NSDictionary(dictionary: temperature["min"] as! NSDictionary)
+                                    where ((temperature["min"]?.isKindOfClass(NSNull)) != true) {
+                                    print(min["celsius"])
+                                }
+                                if let max: NSDictionary = NSDictionary(dictionary: temperature["max"] as! NSDictionary) {
+                                    print(max["celsius"])
+                                }
+                            }
+                        }
                     }
                 }
                 
+                if let description: NSDictionary = NSDictionary(dictionary: json["description"] as! NSDictionary) {
+                    print(description["text"])
+                }
+                
             } catch {
-                print("エラー")
+                print("システムエラー")
             }
         })
         task.resume()
+    }
+    
+    private func formatDate(dateLabel: String, dateString: String, dateFormat: String) -> String {
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        
+        dateFormatter.dateFormat = dateFormat
+        let date: NSDate = dateFormatter.dateFromString(dateString)!
+        
+        dateFormatter.dateFormat = "MM/dd"
+        let mmdd: String = dateFormatter.stringFromDate(date)
+        
+        let components = NSCalendar.currentCalendar().components(.Weekday, fromDate: date)
+        let weekdayIndex: Int = components.weekday - 1
+        let weekday: String = dateFormatter.shortWeekdaySymbols[weekdayIndex]
+        
+        return dateLabel + " " + mmdd + "（" + weekday + "）"
     }
 }
