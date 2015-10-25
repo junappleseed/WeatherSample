@@ -16,6 +16,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var weatherImageToday: UIImageView!
     @IBOutlet weak var weatherLabelToday: UILabel!
     
+    @IBOutlet weak var publicTimeLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,6 +56,11 @@ class MainViewController: UIViewController {
 //                    print(location["city"])
 //                }
                 
+                print(json["publicTime"])
+                
+                let publicTime: String = self.formatDate((json["publicTime"] as! String), beforeFormat: "yyyy-MM-dd'T'HH:mm:ssZ", afterFormat: "HH時")
+                self.publicTimeLabel.text = publicTime + "発表"
+                
                 if let forecasts: NSArray = NSArray(array: json["forecasts"] as! NSArray) {
                     if let today: NSDictionary = NSDictionary(dictionary: forecasts[day] as! NSDictionary) {
 //                        print(today["dateLabel"])
@@ -60,7 +69,7 @@ class MainViewController: UIViewController {
                         
                         let dateLabel: String = today["dateLabel"] as! String
                         let dateString: String = today["date"] as! String
-                        self.dateLabelToday.text = self.formatDate(dateLabel, dateString: dateString, dateFormat: "yyyy-MM-dd")
+                        self.dateLabelToday.text = dateLabel + " " + self.formatDate(dateString, beforeFormat: "yyyy-MM-dd", afterFormat: "MM/dd（E）")
                         self.weatherLabelToday.text = today["telop"] as? String
                         
                         if let image: NSDictionary = NSDictionary(dictionary: today["image"] as! NSDictionary) {
@@ -74,9 +83,11 @@ class MainViewController: UIViewController {
                                 if let min: NSDictionary = NSDictionary(dictionary: temperature["min"] as! NSDictionary)
                                     where ((temperature["min"]?.isKindOfClass(NSNull)) != true) {
                                     print(min["celsius"])
+                                    self.minLabel.text = min["celsius"] as! String + "℃"
                                 }
                                 if let max: NSDictionary = NSDictionary(dictionary: temperature["max"] as! NSDictionary) {
                                     print(max["celsius"])
+                                    self.maxLabel.text = max["celsius"] as! String + "℃"
                                 }
                             }
                         }
@@ -94,21 +105,15 @@ class MainViewController: UIViewController {
         task.resume()
     }
     
-    private func formatDate(dateLabel: String, dateString: String, dateFormat: String) -> String {
+    private func formatDate(dateString: String, beforeFormat: String, afterFormat: String) -> String {
         let dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         
-        dateFormatter.dateFormat = dateFormat
+        dateFormatter.dateFormat = beforeFormat
         let date: NSDate = dateFormatter.dateFromString(dateString)!
         
-        dateFormatter.dateFormat = "MM/dd"
-        let mmdd: String = dateFormatter.stringFromDate(date)
-        
-        let components = NSCalendar.currentCalendar().components(.Weekday, fromDate: date)
-        let weekdayIndex: Int = components.weekday - 1
-        let weekday: String = dateFormatter.shortWeekdaySymbols[weekdayIndex]
-        
-        return dateLabel + " " + mmdd + "（" + weekday + "）"
+        dateFormatter.dateFormat = afterFormat
+        return dateFormatter.stringFromDate(date)
     }
 }
