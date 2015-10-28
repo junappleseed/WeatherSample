@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var publicTimeLabel: UILabel!
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var areaNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,25 +49,18 @@ class MainViewController: UIViewController {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 
-//                print(json["title"])
-//                
-//                if let location: NSDictionary = NSDictionary(dictionary: json["location"] as! NSDictionary) {
-//                    print(location["area"])
-//                    print(location["prefecture"])
-//                    print(location["city"])
-//                }
-                
-                print(json["publicTime"])
+                if let location: NSDictionary = NSDictionary(dictionary: json["location"] as! NSDictionary) {
+                    let area: String = location["area"] as! String
+                    let city: String = location["city"] as! String
+                    
+                    self.areaNameLabel.text = area + " / " + city
+                }
                 
                 let publicTime: String = self.formatDate((json["publicTime"] as! String), beforeFormat: "yyyy-MM-dd'T'HH:mm:ssZ", afterFormat: "HH時")
                 self.publicTimeLabel.text = publicTime + "発表"
                 
                 if let forecasts: NSArray = NSArray(array: json["forecasts"] as! NSArray) {
                     if let today: NSDictionary = NSDictionary(dictionary: forecasts[day] as! NSDictionary) {
-//                        print(today["dateLabel"])
-//                        print(today["telop"])
-//                        print(today["date"])
-                        
                         let dateLabel: String = today["dateLabel"] as! String
                         let dateString: String = today["date"] as! String
                         self.dateLabelToday.text = dateLabel + " " + self.formatDate(dateString, beforeFormat: "yyyy-MM-dd", afterFormat: "MM/dd（E）")
@@ -82,11 +76,9 @@ class MainViewController: UIViewController {
                             if !temperature["min"]!.isKindOfClass(NSNull) {
                                 if let min: NSDictionary = NSDictionary(dictionary: temperature["min"] as! NSDictionary)
                                     where ((temperature["min"]?.isKindOfClass(NSNull)) != true) {
-                                    print(min["celsius"])
                                     self.minLabel.text = min["celsius"] as! String + "℃"
                                 }
                                 if let max: NSDictionary = NSDictionary(dictionary: temperature["max"] as! NSDictionary) {
-                                    print(max["celsius"])
                                     self.maxLabel.text = max["celsius"] as! String + "℃"
                                 }
                             }
