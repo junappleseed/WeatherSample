@@ -12,14 +12,25 @@ class MainViewController: UIViewController {
     
     var selectedArea: Area!
     
-    @IBOutlet weak var dateLabelToday: UILabel!
-    @IBOutlet weak var weatherImageToday: UIImageView!
-    @IBOutlet weak var weatherLabelToday: UILabel!
+    @IBOutlet weak var dateLabel0: UILabel!
+    @IBOutlet weak var weatherImage0: UIImageView!
+    @IBOutlet weak var weatherLabel0: UILabel!
     
-    @IBOutlet weak var publicTimeLabel: UILabel!
-    @IBOutlet weak var minLabel: UILabel!
-    @IBOutlet weak var maxLabel: UILabel!
-    @IBOutlet weak var areaNameLabel: UILabel!
+    @IBOutlet weak var publicTimeLabel0: UILabel!
+    @IBOutlet weak var minLabel0: UILabel!
+    @IBOutlet weak var maxLabel0: UILabel!
+    @IBOutlet weak var areaNameLabel0: UILabel!
+    
+    @IBOutlet weak var dateLabel1: UILabel!
+    @IBOutlet weak var weatherImage1: UIImageView!
+    @IBOutlet weak var weatherLabel1: UILabel!
+    
+    @IBOutlet weak var publicTimeLabel1: UILabel!
+    @IBOutlet weak var minLabel1: UILabel!
+    @IBOutlet weak var maxLabel1: UILabel!
+    @IBOutlet weak var areaNameLabel1: UILabel!
+    
+    @IBOutlet weak var textLabel: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +38,7 @@ class MainViewController: UIViewController {
         
         self.navigationItem.title = selectedArea.areaName + "の天気"
         
-        showWeatherData(selectedArea.cityId, day: 0)
+        showWeatherData(selectedArea.cityId)
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,51 +46,89 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func showWeatherData(cityId: String, day: Int) {
-
+    private func showWeatherData(cityId: String) {
+        
         let url = NSURL(string: "http://weather.livedoor.com/forecast/webservice/json/v1?city=" + cityId)
         let request = NSURLRequest(URL: url!)
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config, delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
+        let session = NSURLSession(
+                configuration: config, delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
     
         let task = session.dataTaskWithRequest(request, completionHandler: {
             (data, response, error) in
             
             do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let json = try NSJSONSerialization.JSONObjectWithData(
+                        data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 
                 if let location: NSDictionary = NSDictionary(dictionary: json["location"] as! NSDictionary) {
                     let area: String = location["area"] as! String
                     let city: String = location["city"] as! String
                     
-                    self.areaNameLabel.text = area + " / " + city
+                    self.areaNameLabel0.text = area + " / " + city
+                    self.areaNameLabel1.text = area + " / " + city
                 }
                 
-                let publicTime: String = self.formatDate((json["publicTime"] as! String), beforeFormat: "yyyy-MM-dd'T'HH:mm:ssZ", afterFormat: "HH時")
-                self.publicTimeLabel.text = publicTime + "発表"
+                let publicTime: String = self.formatDate(
+                        (json["publicTime"] as! String), beforeFormat: "yyyy-MM-dd'T'HH:mm:ssZ", afterFormat: "HH時")
+                self.publicTimeLabel0.text = publicTime + "発表"
+                self.publicTimeLabel1.text = publicTime + "発表"
                 
                 if let forecasts: NSArray = NSArray(array: json["forecasts"] as! NSArray) {
-                    if let today: NSDictionary = NSDictionary(dictionary: forecasts[day] as! NSDictionary) {
+                    if let today: NSDictionary = NSDictionary(dictionary: forecasts[0] as! NSDictionary) {
                         let dateLabel: String = today["dateLabel"] as! String
                         let dateString: String = today["date"] as! String
-                        self.dateLabelToday.text = dateLabel + " " + self.formatDate(dateString, beforeFormat: "yyyy-MM-dd", afterFormat: "MM/dd（E）")
-                        self.weatherLabelToday.text = today["telop"] as? String
+                        self.dateLabel0.text = dateLabel + " "
+                                + self.formatDate(dateString, beforeFormat: "yyyy-MM-dd", afterFormat: "MM/dd（E）")
+                        self.weatherLabel0.text = today["telop"] as? String
                         
                         if let image: NSDictionary = NSDictionary(dictionary: today["image"] as! NSDictionary) {
                             let url: NSURL = NSURL(string: image["url"] as! String)!
                             let imageData: NSData = NSData(contentsOfURL: url)!
-                            self.weatherImageToday.image = UIImage(data: imageData)
+                            self.weatherImage0.image = UIImage(data: imageData)
                         }
                         
                         if let temperature: NSDictionary = NSDictionary(dictionary: today["temperature"] as! NSDictionary) {
-                            if !temperature["min"]!.isKindOfClass(NSNull) {
-                                if let min: NSDictionary = NSDictionary(dictionary: temperature["min"] as! NSDictionary)
-                                    where ((temperature["min"]?.isKindOfClass(NSNull)) != true) {
-                                    self.minLabel.text = min["celsius"] as! String + "℃"
+                            let minValue: AnyObject = temperature["min"]!
+                            if minValue.isKindOfClass(NSNull) == false {
+                                if let min: NSDictionary = NSDictionary(dictionary: minValue as! NSDictionary) {
+                                    self.minLabel0.text = min["celsius"] as! String + "℃"
                                 }
-                                if let max: NSDictionary = NSDictionary(dictionary: temperature["max"] as! NSDictionary) {
-                                    self.maxLabel.text = max["celsius"] as! String + "℃"
+                            }
+                            let maxValue: AnyObject = temperature["max"]!
+                            if maxValue.isKindOfClass(NSNull) == false {
+                                if let max: NSDictionary = NSDictionary(dictionary: maxValue as! NSDictionary) {
+                                    self.maxLabel0.text = max["celsius"] as! String + "℃"
+                                }
+                            }
+                        }
+                    }
+                    
+                    if let today: NSDictionary = NSDictionary(dictionary: forecasts[1] as! NSDictionary) {
+                        let dateLabel: String = today["dateLabel"] as! String
+                        let dateString: String = today["date"] as! String
+                        self.dateLabel1.text = dateLabel + " "
+                                + self.formatDate(dateString, beforeFormat: "yyyy-MM-dd", afterFormat: "MM/dd（E）")
+                        self.weatherLabel1.text = today["telop"] as? String
+                        
+                        if let image: NSDictionary = NSDictionary(dictionary: today["image"] as! NSDictionary) {
+                            let url: NSURL = NSURL(string: image["url"] as! String)!
+                            let imageData: NSData = NSData(contentsOfURL: url)!
+                            self.weatherImage1.image = UIImage(data: imageData)
+                        }
+                        
+                        if let temperature: NSDictionary = NSDictionary(dictionary: today["temperature"] as! NSDictionary) {
+                            let minValue: AnyObject = temperature["min"]!
+                            if minValue.isKindOfClass(NSNull) == false {
+                                if let min: NSDictionary = NSDictionary(dictionary: minValue as! NSDictionary) {
+                                    self.minLabel1.text = min["celsius"] as! String + "℃"
+                                }
+                            }
+                            let maxValue: AnyObject = temperature["max"]!
+                            if maxValue.isKindOfClass(NSNull) == false {
+                                if let max: NSDictionary = NSDictionary(dictionary: maxValue as! NSDictionary) {
+                                    self.maxLabel1.text = max["celsius"] as! String + "℃"
                                 }
                             }
                         }
@@ -87,7 +136,7 @@ class MainViewController: UIViewController {
                 }
                 
                 if let description: NSDictionary = NSDictionary(dictionary: json["description"] as! NSDictionary) {
-                    print(description["text"])
+                    self.textLabel.text = description["text"] as! String
                 }
                 
             } catch {
