@@ -33,7 +33,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
-        cell.textLabel!.text = Area.items[indexPath.row].areaName
+        cell.textLabel?.text = Area.items[indexPath.row].areaName
+        cell.textLabel?.font = UIFont.systemFontOfSize(19)
         return cell
     }
     
