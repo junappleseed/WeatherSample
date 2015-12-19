@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vTz-1P-K5U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vTz-1P-K5U">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--地方選択-->
@@ -263,35 +263,12 @@
                                     <constraint firstItem="E3L-pW-Jmh" firstAttribute="centerX" secondItem="9KV-c9-DyL" secondAttribute="centerX" id="mFJ-6Q-4TZ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tu-NY-FOc">
-                                <rect key="frame" x="10" y="364" width="580" height="226"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="-" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MRs-Xx-MN5">
-                                        <rect key="frame" x="20" y="0.0" width="540" height="226"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="MRs-Xx-MN5" firstAttribute="leading" secondItem="1tu-NY-FOc" secondAttribute="leading" constant="20" id="62Z-XK-iUS"/>
-                                    <constraint firstAttribute="trailing" secondItem="MRs-Xx-MN5" secondAttribute="trailing" constant="20" id="8Pa-lA-1sw"/>
-                                    <constraint firstItem="MRs-Xx-MN5" firstAttribute="top" secondItem="1tu-NY-FOc" secondAttribute="top" id="91b-eU-Gcv"/>
-                                    <constraint firstAttribute="bottom" secondItem="MRs-Xx-MN5" secondAttribute="bottom" id="EhC-ef-6xo"/>
-                                    <constraint firstItem="MRs-Xx-MN5" firstAttribute="centerX" secondItem="1tu-NY-FOc" secondAttribute="centerX" id="i4l-vZ-bw8"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="fiK-KG-wtj" firstAttribute="leading" secondItem="ktV-bs-e8n" secondAttribute="leading" constant="10" id="0Qm-CW-bJ1"/>
                             <constraint firstItem="9KV-c9-DyL" firstAttribute="top" secondItem="fiK-KG-wtj" secondAttribute="bottom" constant="10" id="4em-GA-zGA"/>
-                            <constraint firstAttribute="trailing" secondItem="1tu-NY-FOc" secondAttribute="trailing" constant="10" id="5v7-sP-UEf"/>
-                            <constraint firstItem="1tu-NY-FOc" firstAttribute="top" secondItem="9KV-c9-DyL" secondAttribute="bottom" constant="10" id="808-gA-p6w"/>
                             <constraint firstAttribute="trailing" secondItem="fiK-KG-wtj" secondAttribute="trailing" constant="10" id="Cee-2R-nBF"/>
-                            <constraint firstItem="KuI-hG-gfK" firstAttribute="top" secondItem="1tu-NY-FOc" secondAttribute="bottom" constant="10" id="DTh-Ys-lVB"/>
-                            <constraint firstItem="1tu-NY-FOc" firstAttribute="leading" secondItem="ktV-bs-e8n" secondAttribute="leading" constant="10" id="GRb-lj-hUy"/>
                             <constraint firstItem="9KV-c9-DyL" firstAttribute="leading" secondItem="ktV-bs-e8n" secondAttribute="leading" constant="10" id="Q1Q-pf-83A"/>
                             <constraint firstAttribute="trailing" secondItem="9KV-c9-DyL" secondAttribute="trailing" constant="10" id="hEr-oo-fri"/>
                             <constraint firstItem="fiK-KG-wtj" firstAttribute="top" secondItem="6cx-MZ-wLc" secondAttribute="bottom" constant="10" id="wMY-PC-EL1"/>
@@ -309,7 +286,6 @@
                         <outlet property="minLabel1" destination="aT3-pJ-UFq" id="l0n-yg-4F8"/>
                         <outlet property="publicTimeLabel0" destination="Aek-U6-d0G" id="cJn-r0-MXR"/>
                         <outlet property="publicTimeLabel1" destination="7sh-E6-nmS" id="e5U-7u-RpU"/>
-                        <outlet property="textLabel" destination="MRs-Xx-MN5" id="nP4-J6-8t0"/>
                         <outlet property="weatherImage0" destination="JNe-pQ-2ay" id="C5t-6r-tVE"/>
                         <outlet property="weatherImage1" destination="UYw-R3-GS4" id="06G-S7-1j7"/>
                         <outlet property="weatherLabel0" destination="DhY-bS-TTS" id="M7T-8p-Egj"/>

@@ -30,8 +30,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var maxLabel1: UILabel!
     @IBOutlet weak var areaNameLabel1: UILabel!
     
-    @IBOutlet weak var textLabel: UITextView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -133,10 +131,6 @@ class MainViewController: UIViewController {
                             }
                         }
                     }
-                }
-                
-                if let description: NSDictionary = NSDictionary(dictionary: json["description"] as! NSDictionary) {
-                    self.textLabel.text = description["text"] as! String
                 }
                 
             } catch {
